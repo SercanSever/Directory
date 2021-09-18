@@ -12,29 +12,42 @@ namespace Core.DataAccess.EntityFramework
         where TEntity : class, new()
         where TContext : DbContext, new()
     {
+        private readonly TContext _context;
+        public EntityRepositoryBase()
+        {
+            _context = new TContext();
+        }
         public void Add(TEntity entity)
         {
-            throw new NotImplementedException();
+            var addedEntity = _context.Entry(entity);
+            addedEntity.State = EntityState.Added;
+            _context.SaveChanges();
         }
 
         public void Delete(TEntity entity)
         {
-            throw new NotImplementedException();
+            var deletedEntity = _context.Entry(entity);
+            deletedEntity.State = EntityState.Deleted;
+            _context.SaveChanges();
         }
 
         public TEntity Get(Expression<Func<TEntity, bool>> filter)
         {
-            throw new NotImplementedException();
+            return _context.Set<TEntity>().SingleOrDefault(filter);
         }
 
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            return filter == null
+                ? _context.Set<TEntity>().ToList()
+                : _context.Set<TEntity>().Where(filter).ToList();
         }
 
         public void Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            var updatedEntity = _context.Entry(entity);
+            updatedEntity.State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }
