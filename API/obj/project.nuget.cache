@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "i2EAFoj/znIjK1Lb3+5zDvu+b5lR/6mLHMI/VTD/LwWNHuDhTHoma0AeVnzpq8jb+sEvLtViQXaJEo92HUTmnA==",
+  "dgSpecHash": "8KynRz4pPlQEAIijU+v/ubxMThh/r2J961Xa+37w43+cC3o7/YaeihKQzB60B/Nytdpv+6vbAbZOjXlgYZg8FA==",
   "success": true,
   "projectFilePath": "C:\\Users\\serca\\source\\repos\\Directory\\API\\API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\serca\\.nuget\\packages\\autofac\\6.0.0\\autofac.6.0.0.nupkg.sha512",
+    "C:\\Users\\serca\\.nuget\\packages\\autofac.extensions.dependencyinjection\\7.1.0\\autofac.extensions.dependencyinjection.7.1.0.nupkg.sha512",
     "C:\\Users\\serca\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\serca\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\serca\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
