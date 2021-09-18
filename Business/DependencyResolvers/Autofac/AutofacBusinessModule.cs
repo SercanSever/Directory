@@ -3,6 +3,8 @@ using Business.Abstract;
 using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
+using DataAccess.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.DependencyResolvers.Autofac
 {
@@ -10,6 +12,8 @@ namespace Business.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<DirectoryContext>().As<DbContext>();
+
             builder.RegisterType<EfContactManager>().As<IContactService>();
             builder.RegisterType<EfContactDal>().As<IContactDal>();
 

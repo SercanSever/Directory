@@ -2,6 +2,7 @@
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entity.Concrete;
+using Entity.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,11 @@ namespace Business.Concrete
         public IDataResult<List<Contact>> GetAll()
         {
             return new SuccessDataResult<List<Contact>>(_contactDal.GetAll());
+        }
+
+        public IDataResult<List<ContactDetailsDto>> GetContactsDetail()
+        {
+            return new SuccessDataResult<List<ContactDetailsDto>>(_contactDal.GetContactsWithDetail());
         }
 
         public IResult Update(Contact contact)

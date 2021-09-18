@@ -3,14 +3,16 @@ using DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(DirectoryContext))]
-    partial class DirectoryContextModelSnapshot : ModelSnapshot
+    [Migration("20210918144751_mig3")]
+    partial class mig3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,8 +48,8 @@ namespace DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ContactEmail")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ContactEmail")
+                        .HasColumnType("int");
 
                     b.Property<int>("ContactId")
                         .HasColumnType("int");
@@ -89,8 +91,8 @@ namespace DataAccess.Migrations
                     b.Property<int>("ContactId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ContactPhone")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ContactPhone")
+                        .HasColumnType("int");
 
                     b.HasKey("PhoneId");
 

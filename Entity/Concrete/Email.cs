@@ -12,7 +12,7 @@ namespace Entity.Concrete
         [Key]
         public int EmailId { get; set; }
         public int ContactId { get; set; }
-        public int ContactEmail { get; set; }
+        public string ContactEmail { get; set; }
         public Contact Contact { get; set; }
     }
 }

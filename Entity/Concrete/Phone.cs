@@ -12,7 +12,7 @@ namespace Entity.Concrete
         [Key]
         public int PhoneId { get; set; }
         public int ContactId { get; set; }
-        public int ContactPhone { get; set; }
+        public string ContactPhone { get; set; }
         public Contact Contact { get; set; }
     }
 }

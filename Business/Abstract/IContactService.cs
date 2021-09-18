@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Results;
 using Entity.Concrete;
+using Entity.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace Business.Abstract
         IResult Add(Contact contact);
         IResult Update(Contact contact);
         IResult Delete(Contact contact);
+        IDataResult<List<ContactDetailsDto>> GetContactsDetail();
     }
 }
