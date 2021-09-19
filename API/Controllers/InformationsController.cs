@@ -16,11 +16,16 @@ namespace API.Controllers
     {
         private IEmailService _emailService;
         private ILocationService _locationService;
+        private IPhoneService _phoneService;
 
-        public InformationsController(IEmailService emailService,ILocationService locationService)
+        public InformationsController(
+            IEmailService emailService,
+            ILocationService locationService,
+            IPhoneService phoneService)
         {
             _emailService = emailService;
             _locationService = locationService;
+            _phoneService = phoneService;
         }
 
         #region Email
@@ -85,6 +90,7 @@ namespace API.Controllers
             return BadRequest(result.Message);
         }
         #endregion
+
         #region Location
         [HttpGet("getAllLocations")]
         public IActionResult GetAllLocations()
@@ -140,6 +146,69 @@ namespace API.Controllers
         public IActionResult DeleteLocation(Location location)
         {
             var result = _locationService.Delete(location);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        #endregion
+
+        #region Phone
+        [HttpGet("getAllPhones")]
+        public IActionResult GetAllPhones()
+        {
+            var result = _phoneService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        [HttpGet("getPhoneWithId")]
+        public IActionResult GetPhoneWithId(int Id)
+        {
+            var result = _phoneService.Get(Id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        [HttpGet("getPhonesWithContactId")]
+        public IActionResult GetPhonesWithContactId(int Id)
+        {
+            var result = _phoneService.GetWithContactId(Id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        [HttpPost("contact/addPhone")]
+        public IActionResult AddPhone(Phone phone)
+        {
+            var result = _phoneService.Add(phone);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        [HttpPost("contact/updatePhone")]
+        public IActionResult UpdatePhone(Phone phone)
+        {
+            var result = _phoneService.Update(phone);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        [HttpPut("contact/deletePhone")]
+        public IActionResult DeletePhone(Phone phone)
+        {
+            var result = _phoneService.Delete(phone);
             if (result.Success)
             {
                 return Ok(result);

@@ -19,6 +19,18 @@ namespace Business.Concrete
             _phoneDal = phoneDal;
         }
 
+        public IResult Add(Phone phone)
+        {
+            _phoneDal.Add(phone);
+            return new SuccessResult();
+        }
+
+        public IResult Delete(Phone phone)
+        {
+            _phoneDal.Delete(phone);
+            return new SuccessResult();
+        }
+
         public IDataResult<Phone> Get(int Id)
         {
             return new SuccessDataResult<Phone>(_phoneDal.Get(x => x.PhoneId == Id));
@@ -29,9 +41,15 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Phone>>(_phoneDal.GetAll());
         }
 
-        public IDataResult<Phone> GetWithContactId(int contactId)
+        public IDataResult<List<Phone>> GetWithContactId(int contactId)
         {
-            return new SuccessDataResult<Phone>(_phoneDal.Get(x => x.ContactId == contactId));
+            return new SuccessDataResult<List<Phone>>(_phoneDal.GetAll(x => x.ContactId == contactId));
+        }
+
+        public IResult Update(Phone phone)
+        {
+            _phoneDal.Update(phone);
+            return new SuccessResult();
         }
     }
 }
