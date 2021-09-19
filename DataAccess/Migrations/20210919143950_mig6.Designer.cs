@@ -3,14 +3,16 @@ using DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(DirectoryContext))]
-    partial class DirectoryContextModelSnapshot : ModelSnapshot
+    [Migration("20210919143950_mig6")]
+    partial class mig6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,29 +103,35 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entity.Concrete.Email", b =>
                 {
-                    b.HasOne("Entity.Concrete.Contact", null)
+                    b.HasOne("Entity.Concrete.Contact", "Contact")
                         .WithMany("Emails")
                         .HasForeignKey("ContactId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Contact");
                 });
 
             modelBuilder.Entity("Entity.Concrete.Location", b =>
                 {
-                    b.HasOne("Entity.Concrete.Contact", null)
+                    b.HasOne("Entity.Concrete.Contact", "Contact")
                         .WithMany("Locations")
                         .HasForeignKey("ContactId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Contact");
                 });
 
             modelBuilder.Entity("Entity.Concrete.Phone", b =>
                 {
-                    b.HasOne("Entity.Concrete.Contact", null)
+                    b.HasOne("Entity.Concrete.Contact", "Contact")
                         .WithMany("Phones")
                         .HasForeignKey("ContactId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Contact");
                 });
 
             modelBuilder.Entity("Entity.Concrete.Contact", b =>

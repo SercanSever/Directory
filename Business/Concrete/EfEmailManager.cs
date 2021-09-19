@@ -19,6 +19,23 @@ namespace Business.Concrete
             _emailDal = emailDal;
         }
 
+        public IResult Add(Email email)
+        {
+            _emailDal.Add(email);
+            return new SuccessResult();
+        }
+
+        public IResult Delete(Email email)
+        {
+            _emailDal.Delete(email);
+            return new SuccessResult();
+        }
+        public IResult Update(Email email)
+        {
+            _emailDal.Update(email);
+            return new SuccessResult();
+        }
+
         public IDataResult<Email> Get(int Id)
         {
             return new SuccessDataResult<Email>(_emailDal.Get(x => x.EmailId == Id));
@@ -29,9 +46,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Email>>(_emailDal.GetAll());
         }
 
-        public IDataResult<Email> GetWithContactId(int contactId)
+        public IDataResult<List<Email>> GetWithContactId(int contactId)
         {
-            return new SuccessDataResult<Email>(_emailDal.Get(x => x.ContactId == contactId));
+            return new SuccessDataResult<List<Email>>(_emailDal.GetAll(x => x.ContactId == contactId));
         }
+
+      
     }
 }

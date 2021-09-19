@@ -13,6 +13,5 @@ namespace Entity.Concrete
         public int PhoneId { get; set; }
         public int ContactId { get; set; }
         public string ContactPhone { get; set; }
-        public Contact Contact { get; set; }
     }
 }

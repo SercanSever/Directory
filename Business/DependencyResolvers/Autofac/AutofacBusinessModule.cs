@@ -23,7 +23,7 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfLocationManager>().As<ILocationService>();
             builder.RegisterType<EfContactDal>().As<IContactDal>();
 
-            builder.RegisterType<EfContactManager>().As<IContactService>();
+            builder.RegisterType<EfEmailManager>().As<IEmailService>();
             builder.RegisterType<EfEmailDal>().As<IEmailDal>();
         }
     }
