@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Entity.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -33,6 +34,46 @@ namespace API.Controllers
         public IActionResult GetAllContactsDetails()
         {
             var result = _contactService.GetContactsDetail();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        [HttpGet("getContactWithId")]
+        public IActionResult GetContactWithId(int Id)
+        {
+            var result = _contactService.Get(Id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        [HttpPost("addContact")]
+        public IActionResult AddContact(Contact contact)
+        {
+            var result = _contactService.Add(contact);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        [HttpPost("updateContact")]
+        public IActionResult UpdateContact(Contact contact)
+        {
+            var result = _contactService.Update(contact);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        [HttpPut("deleteContact")]
+        public IActionResult DeleteContact(Contact contact)
+        {
+            var result = _contactService.Delete(contact);
             if (result.Success)
             {
                 return Ok(result);
