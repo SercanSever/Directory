@@ -43,7 +43,7 @@ namespace API.Controllers
         [HttpGet("getContactWithId")]
         public IActionResult GetContactWithId(int id)
         {
-            var result = _contactService.Get(Id);
+            var result = _contactService.Get(id);
             if (result.Success)
             {
                 return Ok(result);
