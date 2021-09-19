@@ -12,6 +12,9 @@ namespace Business.Abstract
     {
         IDataResult<List<Location>> GetAll();
         IDataResult<Location> Get(int Id);
-        IDataResult<Location> GetWithContactId(int contactId);
+        IDataResult<List<Location>> GetWithContactId(int contactId);
+        IResult Add(Location location);
+        IResult Update(Location location);
+        IResult Delete(Location location);
     }
 }

@@ -15,14 +15,15 @@ namespace API.Controllers
     public class InformationsController : ControllerBase
     {
         private IEmailService _emailService;
+        private ILocationService _locationService;
 
-        public InformationsController(IEmailService emailService)
+        public InformationsController(IEmailService emailService,ILocationService locationService)
         {
             _emailService = emailService;
+            _locationService = locationService;
         }
-        #region Email
 
-        #endregion
+        #region Email
         [HttpGet("getAllEmails")]
         public IActionResult GetAllEmails()
         {
@@ -34,7 +35,7 @@ namespace API.Controllers
             return BadRequest(result.Message);
         }
         [HttpGet("getEmailWithId")]
-        public IActionResult GetAllEmails(int Id)
+        public IActionResult GetEmailWithId(int Id)
         {
             var result = _emailService.Get(Id);
             if (result.Success)
@@ -53,7 +54,6 @@ namespace API.Controllers
             }
             return BadRequest(result.Message);
         }
-
         [HttpPost("contact/addEmail")]
         public IActionResult AddEmail(Email email)
         {
@@ -84,5 +84,69 @@ namespace API.Controllers
             }
             return BadRequest(result.Message);
         }
+        #endregion
+        #region Location
+        [HttpGet("getAllLocations")]
+        public IActionResult GetAllLocations()
+        {
+            var result = _locationService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        [HttpGet("getLocationWithId")]
+        public IActionResult GetLocatioWithId(int Id)
+        {
+            var result = _locationService.Get(Id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        [HttpGet("getLocationsWithContactId")]
+        public IActionResult GetLocationsWithContactId(int Id)
+        {
+            var result = _locationService.GetWithContactId(Id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        [HttpPost("contact/addLocation")]
+        public IActionResult AddLocation(Location location)
+        {
+            var result = _locationService.Add(location);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        [HttpPost("contact/updateLocation")]
+        public IActionResult UpdateLocation(Location location)
+        {
+            var result = _locationService.Update(location);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        [HttpPut("contact/deleteLocation")]
+        public IActionResult DeleteLocation(Location location)
+        {
+            var result = _locationService.Delete(location);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        #endregion
+
     }
 }

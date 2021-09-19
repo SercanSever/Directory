@@ -19,6 +19,18 @@ namespace Business.Concrete
             _locationDal = locationDal;
         }
 
+        public IResult Add(Location location)
+        {
+            _locationDal.Add(location);
+            return new SuccessResult();
+        }
+
+        public IResult Delete(Location location)
+        {
+            _locationDal.Delete(location);
+            return new SuccessResult();
+        }
+
         public IDataResult<Location> Get(int Id)
         {
             return new SuccessDataResult<Location>(_locationDal.Get(x => x.LocationId == Id));
@@ -29,9 +41,15 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Location>>(_locationDal.GetAll());
         }
 
-        public IDataResult<Location> GetWithContactId(int contactId)
+        public IDataResult<List<Location>> GetWithContactId(int contactId)
         {
-            return new SuccessDataResult<Location>(_locationDal.Get(x => x.ContactId == contactId));
+            return new SuccessDataResult<List<Location>>(_locationDal.GetAll(x => x.ContactId == contactId));
+        }
+
+        public IResult Update(Location location)
+        {
+            _locationDal.Update(location);
+            return new SuccessResult();
         }
     }
 }
