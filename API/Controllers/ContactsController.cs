@@ -41,7 +41,7 @@ namespace API.Controllers
             return BadRequest(result.Message);
         }
         [HttpGet("getContactWithId")]
-        public IActionResult GetContactWithId(int Id)
+        public IActionResult GetContactWithId(int id)
         {
             var result = _contactService.Get(Id);
             if (result.Success)
