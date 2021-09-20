@@ -1,8 +1,10 @@
-﻿using Core.DataAccess.EntityFramework;
+﻿using AutoMapper;
+using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
 using DataAccess.Context;
 using Entity.Concrete;
 using Entity.Dto;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +13,10 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete
 {
-    public class EfContactDal : EntityRepositoryBase<Contact,DirectoryContext>,IContactDal
+    public class EfContactDal : EntityRepositoryBase<Contact, DirectoryContext>, IContactDal
     {
+       
+
         public List<ContactDetailsDto> GetContactsWithDetail()
         {
             using (DirectoryContext context = new DirectoryContext())
@@ -34,7 +38,7 @@ namespace DataAccess.Concrete
                                  Phone = p.ContactPhone,
                                  Location = l.ContactLocation
                              };
-                return result.ToList();
+                return result.Distinct().ToList();
             }
         }
     }

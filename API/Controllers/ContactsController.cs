@@ -40,6 +40,16 @@ namespace API.Controllers
             }
             return BadRequest(result.Message);
         }
+        [HttpGet("getAllContactDetailsWithName")]
+        public IActionResult GetAllContactDetailsWithName(string name)
+        {
+            var result = _contactService.GetContactDetailWithName(name);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
         [HttpGet("getContactWithId")]
         public IActionResult GetContactWithId(int id)
         {

@@ -42,6 +42,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Contact>>(_contactDal.GetAll());
         }
 
+        public IDataResult<ContactDetailsDto> GetContactDetailWithName(string name)
+        {
+            return new SuccessDataResult<ContactDetailsDto>(_contactDal.GetContactsWithDetail().Where(x => x.Name == name).FirstOrDefault());
+        }
+
         public IDataResult<List<ContactDetailsDto>> GetContactsDetail()
         {
             return new SuccessDataResult<List<ContactDetailsDto>>(_contactDal.GetContactsWithDetail());
@@ -52,5 +57,13 @@ namespace Business.Concrete
             _contactDal.Update(contact);
             return new SuccessResult();
         }
+        public IDataResult<List<ContactDetailsDto>> ListByLocation()
+        {
+            var result = _contactDal.GetContactsWithDetail();
+  
+            return new SuccessDataResult<List<ContactDetailsDto>>(_contactDal.GetContactsWithDetail());
+        }
+
+
     }
 }

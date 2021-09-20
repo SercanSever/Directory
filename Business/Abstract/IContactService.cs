@@ -17,5 +17,6 @@ namespace Business.Abstract
         IResult Update(Contact contact);
         IResult Delete(Contact contact);
         IDataResult<List<ContactDetailsDto>> GetContactsDetail();
+        IDataResult<ContactDetailsDto> GetContactDetailWithName(string name);
     }
 }
