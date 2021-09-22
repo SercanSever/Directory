@@ -22,7 +22,7 @@ Dependency Injection için Autofac kütüphanesinden yararlanılmıştır.
  Her projede kullanılabilecek kodlar bu katmanda yer almaktadır. Entitiy FrameworkCore ile crud işlemler kodlanmıştır. Generic Repository Pattern kullanılmış olup DataAccess'e tüm crud işlemler implement edilmiştir.
  #### Core / Utilities 
   * Results - Burada tüm business için ortak dönüş tipi kodlanmıştır. Hata ya da başarılı sonuş için ayrı dönüş tipleri, void ya da data döndüren metotlar için ayrı dönüş tipleri kodlanmıştır.
-  * BusinessRules - Business kurallarını daha temiz bir şekilde kodlamak için dönüş tipleri aynı olan metotların kontrolü burada yapılmaktadır. Böylece business katmanında kod yığınında kurtulunmuştur.
+  * BusinessRules - Business kurallarını daha temiz bir şekilde kodlamak için dönüş tipleri aynı olan metotların kontrolü burada yapılmaktadır. Böylece business katmanında kod yığınından kurtulunmuştur.
   
   #### T-Sql Rehber Raporu Kodu
 `select count(l.ContactLocation) as NumberOfLocation, l.ContactLocation, count(distinct c.Name) as NumberOfContaxt , count(p.ContactPhone) as NumberOfPhone from Contacts c inner join [Phones] p on c.ContactId = p.ContactId inner join [Location] l on c.ContactId = l.ContactId group by l.ContactLocation order by count(l.ContactLocation) desc` 
